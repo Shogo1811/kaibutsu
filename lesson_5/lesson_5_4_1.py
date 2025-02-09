@@ -21,7 +21,6 @@ def submit():
         return "Form submitted!"
     return "Send a POST request to submit."
 
-
 @app.route("/submit", methods=["POST"])
 def submit_form():
     name = request.form.get("name")  # フォームデータ
@@ -32,11 +31,8 @@ def submit_form():
         return "Valid age is required!", 400
     return f"Form submitted successfully! Hello, {name}!, You are {age} years old."
 
-
 @app.route("/api/data", methods=["POST"])
 def api_data():
-    print("test")
-    print(request.get_json())
     data = request.get_json()  # JSONデータ
     if not data or "name" not in data:
         return jsonify({"error": "Invalid data"}), 400
