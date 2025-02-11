@@ -14,9 +14,6 @@ def about():
 def user(username):
     return f"Hello, {username}!"
 
-def user(username):
-    return f"Hello, {username}!"
-
 # HTTPメソッドの使い分け
 @app.route("/submit", methods=["GET", "POST"])
 def submit():

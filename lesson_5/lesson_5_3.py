@@ -1,25 +1,15 @@
-from flask import Flask, jsonify, request
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-@app.route("/")
-def hello_world():
-    return "Hello, world!"
+@app.route("/greet", methods=["GET"])
+def greet():
+    name = request.args.get("name", "Guest")  # クエリパラメータ
+    return f"Hello, {name}!"
 
-@app.route("/about")
-def about():
-    return "This is the about page."
-
-@app.route("/user/<username>")
-def user(username):
-    return f"Hello, {username}!"
-
-# HTTPメソッドの使い分け
-@app.route("/submit", methods=["GET", "POST"])
-def submit():
-    if request.method == "POST":
-        return "Form submitted!"
-    return "Send a POST request to submit."
+@app.route("/custom", methods=["GET"])
+def custom_response():
+    return "This is a custom response!", 202
 
 @app.route("/submit", methods=["POST"])
 def submit_form():
